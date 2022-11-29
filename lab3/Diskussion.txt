@@ -1,0 +1,19 @@
+D10/ 
+
+
+1. Swing (liksom många motsvarigheter, som Android och JavaFX) bygger på en princip
+som kallas för Hollywoodprincipen: ”Don’t call us – we’ll call you!”
+Kan du se i ditt program vad som menas med detta?
+
+    - när man gör en GUI och gör olika funktioner så körs koden i programmet först när man exempelvis kallar på någon metod via 
+     GUIn som använder sig av det stycket kod. "Vi kallar på koden när den behövs"
+
+2. Varför passar lambdauttryck särskilt bra ihop med denna princip?
+    - I ett lambdauttryck så finns ligger det metoder som körs när man kör lambdauttrycket. Med Hollywoodprincipen så skippar man att 
+    köra en stor mängd kod tills att man faktiskt behöver den.
+
+
+3. När kontrolldelen av ditt program ändrar ordningen i ordlistan uppdateras användargränssnittet automatiskt. 
+Kan du förstå något om hur det hänger ihop?
+
+    - Använder sig av ActionEvents? ActionPerformed uppdaterar när ett event förekommer?
