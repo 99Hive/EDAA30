@@ -21,10 +21,6 @@ public class SudokuGUI {
 	private final int EMPTY = 0;
 	private SudokuSolver sr;
 
-	/*
-	 * Konstruktor, innehåller rutorna, en sudokureader. Kalllar på metod för att
-	 * sätta upp GUIN
-	 */
 
 	public SudokuGUI() {
 		textField = new JTextField[9][9];
@@ -38,23 +34,15 @@ public class SudokuGUI {
 		Random rand = new Random();
 
 		Color[] col = new Color[9];
-		/* Random färger för varje ny ruta */
-		for (int i = 0; i < 9; i++) {
-			int randColNbr = rand.nextInt(200, 255);
-			Color randCol = Color.getHSBColor(randColNbr, randColNbr, randColNbr);
-			col[i] = randCol;
-		}
+	
 
-		// rutorna
 		frame = new JFrame("SUDOKU SOLVER");
 
-		// lägger in rutorna och fixar designen för dem
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				textField[i][j] = new JTextField();
-				textField[i][j].setBounds(60 + j * 40, 50 + i * 40, 40, 40); // dimensioner för rutorna, x y width
-																				// heoght
-				textField[i][j].setBackground(col[(i / 3) * 3 + (j / 3)]); // bakgrundsfärgen
+				textField[i][j].setBounds(60 + j * 40, 50 + i * 40, 40, 40); 
+				textField[i][j].setBackground(col[(i / 3) * 3 + (j / 3)]); 
 				Font textFont = new Font("SansSerif", Font.BOLD, 20);
 				textField[i][j].setFont(textFont);
 				textField[i][j].setHorizontalAlignment(SwingConstants.CENTER);
@@ -62,20 +50,16 @@ public class SudokuGUI {
 				frame.add(textField[i][j]);
 			}
 
-			/*
-			 * Lägger till solveknappen & clearknappen, kallar på solve-metoden via en
-			 * actionlistener
-			 */
+		
 			solveButton = new JButton("SOLVE");
 			clearButton = new JButton("CLEAR");
 
-			/* Återställer alla celler till 0 med actionlistener */
 			clearButton.setBounds(60, 450, 80, 80);
 			clearButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 //					solved = true;
-					sr.clear(); // kallar på interface ifall det behövs, vi vill dock ha null istället för 0or
+					sr.clear(); 
 					for (int i = 0; i < 9; i++) {
 						for (int k = 0; k < 9; k++) {
 							if (sr.getCell(i, k) == 0) {
@@ -91,7 +75,6 @@ public class SudokuGUI {
 				}
 			});
 
-			/* Knapp som kallar på rekursiva lösningen med actioneventlistener */
 			solveButton.setBounds(330, 450, 80, 80);
 			solveButton.addActionListener(new ActionListener() {
 				@Override
@@ -137,14 +120,12 @@ public class SudokuGUI {
 			frame.add(solveButton);
 			frame.add(clearButton);
 		}
-		// for-loop stop, s�tter rutans dimensioner
 		center();
 		frame.setSize(500, 600);
 		frame.setLayout(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
 		frame.setLocation(300, 100);
-		// frame.setBackground(Color.blue);
 
 	}
 
@@ -154,7 +135,6 @@ public class SudokuGUI {
 		frame.setSize(600, 600);
 	}
 
-	/* Privat metod som kollar att det inskrivna värdet är ok */
 	private boolean allowedValue(String text) {
 		if (text.matches("1") || text.matches("2") || text.matches("3") || text.matches("4") || text.matches("5")
 				|| text.matches("6") || text.matches("7") || text.matches("8") || text.matches("9")) {
